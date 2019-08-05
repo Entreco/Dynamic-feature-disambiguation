@@ -1,0 +1,34 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion rootProject.compileSdkVersion
+    defaultConfig {
+        applicationId "nl.entreco.giddyapp"
+        minSdkVersion rootProject.minSdkVersion
+        targetSdkVersion rootProject.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+        archivesBaseName = "${appName}-${versionName}"
+        resValue "string", "version", "\"${appName}-${versionName}\""
+
+        resConfigs "en", "nl"
+    }
+
+    //Add the following configuration in order to target Java 8.
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    dynamicFeatures = [
+            ":features:viewer",
+            ":features:profile"
+    ]
+}
+
+dependencies {
+    api "androidx.appcompat:appcompat:$xAppcompat"
+}

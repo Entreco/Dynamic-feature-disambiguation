@@ -1,0 +1,4 @@
+include ':app',
+        ':features:viewer',
+        ':features:profile'
+
